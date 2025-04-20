@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Water Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow);
+
+body {
+  padding:30px 0;
+  background: #2f3439;
+  font-family: 'PT Sans Narrow', sans-serif;
+  color: #3ecbe9;
+  text-transform: uppercase;
+}
+.wrapper {
+  position:relative;
+  width: 80%;
+  margin: auto;
+  background: white;
+}
+.header {
+  position: relative;
+  height: 80px;
+}
+.calendar {
+  position: absolute;
+  left: 50px;
+  bottom: 25px;
+  font-size: 1.2em;
+}
+.title {
+  position: absolute;
+  margin: auto;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+  font-size: 1.5em;
+}
+.menu {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  background: #e3f8fc;
+  padding: 5px 40px 5px 10px;
+  border-radius: 20px;
+}
+.hamburger {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background: #3ecbe9;
+  color: #FFF;
+  border-radius: 20px;
+  padding: 5px 8px;
+}
+.content {
+  position: relative;
+  height: 150px;
+}
+
+.goal {
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  display:block;
+  color: #9ee5f4;
+  font-size: 18px;
+  text-align: center;
+  width: 130px;
+}
+.goal .number {
+  display: block;
+  font-size: 40px;
+}
+
+.current {
+  position: absolute;
+  top: 10px;
+  left: 130px;
+  display:block;
+  color: #3ecbe9;
+  font-size: 28px;
+  text-align: center;
+  width: 150px;
+  color: #b0e6f4;
+}
+.current .number {
+  display: block;
+  color: #3ecbe9;
+  font-size: 2.1em;
+  font-weight: bold;
+}
+
+.tracker-wrapper{
+  width: 100%;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+.steps {
+  position: absolute;
+  font-size: 1.4em;
+  left: -12px;
+  top: 35px;
+}
+.step {
+  padding-bottom: 35px;
+}
+.step:before {
+  content: '------';
+  padding: 0 5px 0 5px;
+}
+.step:nth-child(even):before {
+  content: '----';
+  padding: 0 15px 0 5px;
+}
+
+.tracker {
+  background: #3ecbe9;
+  z-index: 5;
+  width: 100%;
+  position: absolute;
+  height: 800px;
+  top: 145px;
+  overflow: hidden;
+}
+.tracker .steps {
+  position: absolute;
+  color: #FFF;
+  top: -110px;
+}
+.slider {
+  position: absolute;
+  cursor: n-resize;
+  z-index: 10;
+  top: 120px;
+  left: 45%;
+  background: #FFF;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  display:block;
+}
+.slider:before {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  content: '';
+  background: #3ecbe9;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display:block;
+}
+.highlight {
+  color: #FFF;
+  position: absolute;
+  top: 10px;
+  left: -197px;
+  width: 80px;
+  background: #3ecbe9;
+  height: 30px;
+  border-radius: 25px;
+  border: 3px solid #FFF;
+  font-size: 1.4em;
+  line-height: 22px;
+}
+.highlight:before {
+  content: '------';
+  padding: 0 5px 0 5px;
+}
+.slider .glyphicon {
+  color: #FFF;
+  position: absolute;
+  left: 18px;
+  top: 17px;
+}
+  </style>
+</head>
+<body><div class="wrapper">
+    <!-- Header -->
+    <div class="header">
+      
+      <!-- Browse calendar (Left part) -->
+      <div class="calendar">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </div>
+      
+      <!-- Selected day (Middle part) -->
+      <div class="title">Today</div>
+      
+      <!-- Application menu (Right part) -->
+      <div class="menu">
+        <span class="glyphicon glyphicon-glass"></span>
+        <div class="hamburger">
+          <span class="glyphicon glyphicon-align-left"></span>
+        </div>
+      </div>
+  
+    </div>
+    
+    <!-- Track part -->
+    <div class="content">
+      
+      <!-- Daily water consumption goal -->
+      <div class="goal">
+        <span class="number">3.2</span>liters
+      </div>
+      
+      <!-- Current water consumption (Dynamic) -->
+      <div class="current">
+        <span class="number">2.2</span>liters
+      </div>
+      
+    </div>
+    
+    <!-- Resizable water tracker -->
+    <div class="tracker-wrapper">
+      <div class="steps">
+        <div class="step">3.0</div>
+        <div class="step">2.5</div>
+        <div class="step">2.0</div>
+        <div class="step">1.5</div>
+        <div class="step">1</div>
+        <div class="step">0.5</div>
+      </div>
+      
+      <!-- Drag to track progression -->
+      <div class="slider">
+        <div class="highlight">2.2</div>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </div>
+      
+      <!-- Water consumption as a Background -->
+      <div class="tracker">
+        
+        <!-- Alternative steps -->
+        <div class="steps">
+          <div class="step">3.0</div>
+          <div class="step">2.5</div>
+          <div class="step">2.0</div>
+          <div class="step">1.5</div>
+          <div class="step">1</div>
+          <div class="step">0.5</div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script>
+    $(function() {
+      // Cache selectors
+      var $slider = $(".slider");
+      var $trackerWrapper = $('.tracker-wrapper');
+      var $tracker = $('.tracker');
+      var $trackerSteps = $('.tracker .steps');
+      var $currentNumber = $('.current .number');
+      var $highlight = $('.highlight');
+      var maxScore = 3.2;
+
+      // Function to update slider dimensions and behavior
+      function updateSlider() {
+        var wrapperHeight = $trackerWrapper.height();
+        var sliderHeight = $slider.height();
+
+        // Initialize or update draggable
+        $slider.draggable({
+          axis: "y",
+          containment: "parent",
+          drag: function() {
+            var sliderTop = $slider.position().top;
+
+            // Calculate score (liters)
+            var normalizedPosition = 1 - (sliderTop / (wrapperHeight - sliderHeight));
+            var score = Math.max(0, Math.min(maxScore, normalizedPosition * maxScore));
+
+            // Update tracker position
+            $tracker.css('top', sliderTop + (sliderHeight / 2));
+            $trackerSteps.css('top', -sliderTop - (wrapperHeight / 4));
+
+            // Update UI
+            $currentNumber.text(score.toFixed(1));
+            $highlight.text(score.toFixed(1));
+          }
+        });
+      }
+
+      // Initial setup
+      updateSlider();
+
+      // Debounce resize events
+      function debounce(func, wait) {
+        var timeout;
+        return function() {
+          clearTimeout(timeout);
+          timeout = setTimeout(func, wait);
+        };
+      }
+
+      // Update on resize
+      $(window).on('resize', debounce(updateSlider, 100));
+    });
+  </script>
+</body>
+</html>
