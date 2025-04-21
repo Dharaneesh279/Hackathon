@@ -19,10 +19,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
-  <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/drops-water-svgrepo-com (1).png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/drops-water-svgrepo-com.png' %}">
   <title>
-    EnergyMate
+    Wave Warden
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -42,8 +42,8 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-        <img src="{% static 'assets/img/clean.png' %}" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">EnergyMate</span>
+        <img src="{% static 'assets/img/drops-water-svgrepo-com.png' %}" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Wave Warden</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -63,6 +63,17 @@
               <i class="material-icons opacity-10">notifications</i>
             </div>
             <span class="nav-link-text ms-1">Suggestions</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="{% url 'Watertracking' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-half" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0q.164.544.371 1.038c.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8m.413 1.021A31 31 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z"/>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">Watertracking</span>
           </a>
         </li>
       </ul>
@@ -181,49 +192,49 @@
             </div>
             <div class="card-body p-3 pb-0">
               <div class="alert alert-primary alert-dismissible text-white" role="alert">
-                <span class="text-sm">Power Factor: Install capacitors to maintain a power factor of 0.98, reducing energy wastage and ensuring optimal electrical efficiency. 
+                <span class="text-sm">Fix Leaks Promptly - Repair dripping faucets and leaky pipes to prevent water loss. 
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-secondary alert-dismissible text-white" role="alert">
-                <span class="text-sm">Copper Wires: Use A-grade copper wires with proper insulation to minimize energy loss and enhance safety.
+                <span class="text-sm">Turn Off Tap While Brushing - Avoid running water while brushing teeth or shaving
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-success alert-dismissible text-white" role="alert">
-                <span class="text-sm">Pipelines: Employ A-grade, fire-resistant pipelines to mitigate risks of fire accidents and ensure system durability.
+                <span class="text-sm">Take Shorter Showers - Limit showers to 5 minutes to save gallons of water.
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-danger alert-dismissible text-white" role="alert">
-                <span class="text-sm">ELCB: Install Earth Leakage Circuit Breakers to prevent electrical shocks and enhance safety during fault conditions.
+                <span class="text-sm">Collect Rainwater - Use rain barrels to collect water for gardening or cleaning.
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-warning alert-dismissible text-white" role="alert">
-                <span class="text-sm">Voltage Stabilizer: Use voltage stabilizers to protect appliances from voltage fluctuations, improving their lifespan.
+                <span class="text-sm">Use a Bucket for Car Washing - Wash cars with a bucket and sponge, not a running hose.
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-info alert-dismissible text-white" role="alert">
-                <span class="text-sm">LED Lighting: Replace traditional lighting with LED to save energy and cut costs.
+                <span class="text-sm">Use a Broom for Patio Cleaning - Clean outdoor patios or decks with a broom rather than a pressure washer.
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-light alert-dismissible text-white" role="alert">
-                <span class="text-sm">Energy-Efficient Appliances: Use energy-star-rated appliances to reduce power consumption.
+                <span class="text-sm">Dishwashing - Use a bowl for washing dishes instead of running water continuously
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="alert alert-dark alert-dismissible text-white" role="alert">
-                <span class="text-sm">Implement rainwater harvesting systems for outdoor irrigation needs.
+                <span class="text-sm">Use Low-Water Cleaning Products - Choose cleaning sprays or wipes that don’t require rinsing to reduce water use for household chores.
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
