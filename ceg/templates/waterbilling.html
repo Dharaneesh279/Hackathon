@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/drops-water-svgrepo-com (1).png' %}">
+		<link rel="icon" type="image/png" href="{% static 'assets/img/drops-water-svgrepo-com.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+		<!--     Fonts and icons     -->
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+		<!-- Nucleo Icons -->
+		<link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+		<link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+		<!-- Font Awesome Icons -->
+		<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+		<!-- Material Icons -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+		<!-- CSS Files -->
+		<link id="pagestyle" href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Tax Bill Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fffafa, #fff);
+      padding: 20px;
+      color: #333;
+      animation: fadeInBody 1s ease-in-out;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 933px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: slideUp 1.2s ease-in-out;
+      float: right;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #0077cc;
+      outline: none;
+      box-shadow: 0 0 5px #81d4fa;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e3f2fd;
+      border-left: 5px solid #039be5;
+      border-radius: 8px;
+      animation: fadeInResult 0.7s ease-in;
+    }
+
+    @keyframes fadeInResult {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <body class="g-sidenav-show  bg-gray-200"><!-- header section -->
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+      <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
+        <img src="{% static 'assets/img/drops-water-svgrepo-com.png' %}" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">Wave Warden</span>
+        </a>
+        
+      </div>
+      <hr class="horizontal light mt-0 mb-2">
+      <div class=" w-auto  max-height-vh-100" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Watertracking' %}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-half" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0q.164.544.371 1.038c.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8m.413 1.021A31 31 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                  <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z"/>
+                </svg>
+              </div>
+              <span class="nav-link-text ms-1">Watertracking</span>
+            </a>
+          </li> 
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'dashboard' %}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">dashboard</i>
+          </div>
+          <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary " href="{% url 'waterbilling' %}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+              <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z"/>
+              <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Water billing</span>
+          </a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{% url 'notifications' %}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">notifications</i>
+          </div>
+          <span class="nav-link-text ms-1">Suggestions</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{% url 'profile1' %}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'logout' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">logout</i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
+        </ul>
+      </div>
+      </aside>
+  <div class="container">
+    <h2>💧 Water Tax Bill Calculator</h2>
+    <label for="shower">🚿 Shower (litres/day):</label>
+    <input type="number" id="shower" value="" />
+
+    <label for="washing">🧺 Washing Machine (litres/day):</label>
+    <input type="number" id="washing" value="" />
+
+    <label for="car">🚗 Car Washing (litres/day):</label>
+    <input type="number" id="car" value="" />
+
+    <label for="cooking">🍳 Cooking (litres/day):</label>
+    <input type="number" id="cooking" value="" />
+
+    <label for="heater">🔥 Water Heater (litres/day):</label>
+    <input type="number" id="heater" value="" />
+
+    <label for="drinking">🥤 Drinking (litres/day):</label>
+    <input type="number" id="drinking" value="" />
+
+    <button onclick="calculateBill()">Calculate Bill</button>
+
+    <div class="result" id="result" style="display: none;"></div>
+    <button id="downloadBtn" style="display:none;" onclick="downloadBill()">Download Bill (PDF)</button>
+  </div>
+
+  <!-- jsPDF for PDF creation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/chartjs.min.js' %}"></script>
+  <script>
+    function calculateBill() {
+      const shower = +document.getElementById("shower").value;
+      const washing = +document.getElementById("washing").value;
+      const car = +document.getElementById("car").value;
+      const cooking = +document.getElementById("cooking").value;
+      const heater = +document.getElementById("heater").value;
+      const drinking = +document.getElementById("drinking").value;
+
+      const totalPerDay = shower + washing + car + cooking + heater + drinking;
+      const totalPerMonth = totalPerDay * 30;
+
+      const ratePerLitre = 4.50 / 1000;
+      const totalBill = totalPerMonth * ratePerLitre;
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `
+        <strong>Total Daily Consumption:</strong> ${totalPerDay.toFixed(2)} litres<br/>
+        <strong>Total Monthly Consumption:</strong> ${totalPerMonth.toFixed(2)} litres<br/>
+        <strong>Rate Applied:</strong> ₹${ratePerLitre.toFixed(4)} per litre<br/>
+        <strong>Total Water Tax Bill:</strong> <span style="color:#2e7d32;font-size:18px;">₹${totalBill.toFixed(2)}</span>
+      `;
+
+      document.getElementById("downloadBtn").style.display = "block";
+    }
+
+    async function downloadBill() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const shower = document.getElementById("shower").value;
+      const washing = document.getElementById("washing").value;
+      const car = document.getElementById("car").value;
+      const cooking = document.getElementById("cooking").value;
+      const heater = document.getElementById("heater").value;
+      const drinking = document.getElementById("drinking").value;
+
+      const dailyTotal = +shower + +washing + +car + +cooking + +heater + +drinking;
+      const monthlyTotal = dailyTotal * 30;
+      const rate = 4.50 / 1000;
+      const bill = monthlyTotal * rate;
+
+      doc.setFontSize(16);
+      doc.text("Water Tax Bill", 80, 20);
+      doc.setFontSize(12);
+      doc.text(`Shower: ${shower} litres/day`, 20, 40);
+      doc.text(`Washing Machine: ${washing} litres/day`, 20, 50);
+      doc.text(`Car Washing: ${car} litres/day`, 20, 60);
+      doc.text(`Cooking: ${cooking} litres/day`, 20, 70);
+      doc.text(`Water Heater: ${heater} litres/day`, 20, 80);
+      doc.text(`Drinking: ${drinking} litres/day`, 20, 90);
+      doc.text(`Total Monthly Consumption: ${monthlyTotal.toFixed(2)} litres`, 20, 110);
+      doc.text(`Rate Applied: Rs ${rate.toFixed(4)} per litre`, 20, 120);
+      doc.text(`Total Water Tax Bill: Rs ${bill.toFixed(2)}`, 20, 130);
+
+      doc.save("water-tax-bill.pdf");
+    }
+  </script>
+</body>
+</html>

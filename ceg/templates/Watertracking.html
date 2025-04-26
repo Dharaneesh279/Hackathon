@@ -1,0 +1,359 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+		<link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/drops-water-svgrepo-com (1).png' %}">
+		<link rel="icon" type="image/png" href="{% static 'assets/img/drops-water-svgrepo-com.png' %}">
+		<!--     Fonts and icons     -->
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+		<!-- Nucleo Icons -->
+		<link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+		<link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+		<!-- Font Awesome Icons -->
+		<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+		<!-- Material Icons -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+		<!-- CSS Files -->
+		<link id="pagestyle" href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <title>Water Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      background: #f0f2f5;
+    }
+    .sidebar {
+      width: 240px;
+      background: #1f1f2e;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .profile {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .profile .avatar {
+      width: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      padding: 12px;
+      border-radius: 8px;
+      margin: 8px 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar li.active {
+      background: #00d4ff;
+      color: #1f1f2e;
+      font-weight: bold;
+    }
+    .sidebar li:hover {
+      background: #2f2f3e;
+    }
+    .main-content {
+      flex: 1;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .goal-card, .tank-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .goal-card input {
+      width: 150px;
+      padding: 10px;
+      margin: 10px 10px 10px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .goal-card button {
+      padding: 10px 20px;
+      border: none;
+      background: #00c6ff;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+	.bg-pink {
+    background-color: #d63384 !important;
+	}
+
+    .goal-card button:hover {
+      background: #0099cc;
+    }
+    .tank {
+      width: 120px;
+      height: 300px;
+      border: 4px solid #00d4ff;
+      margin: 20px auto;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    #waterLevel {
+      background: linear-gradient(180deg, #00d4ff, #0097cc);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 0%;
+      transition: height 0.5s ease-in-out;
+    }
+    .tank-label {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+    .cup-sizes {
+      margin-top: 20px;
+    }
+    .cup-sizes h3 {
+      margin-bottom: 15px;
+    }
+    .cup-sizes button, .cup-sizes input {
+      padding: 10px 14px;
+      margin: 6px 4px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .cup-sizes button {
+      background: #00c6ff;
+      color: white;
+      cursor: pointer;
+    }
+    .cup-sizes button:hover {
+      background: #0099cc;
+    }
+    .cup-sizes input {
+      border: 1px solid #ccc;
+      width: 80px;
+    }
+    .cup-sizes button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    #message {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+      color: #ff4c7d;
+    }
+  </style>
+</head>
+<body class="g-sidenav-show  bg-gray-200"><!-- header section -->
+	<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+		<div class="sidenav-header">
+		  <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+		  <a class="navbar-brand m-0" href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
+			<img src="{% static 'assets/img/drops-water-svgrepo-com.png' %}" class="navbar-brand-img h-100" alt="main_logo">
+			<span class="ms-1 font-weight-bold text-white">Wave Warden</span>
+		  </a>
+		  
+		</div>
+		<hr class="horizontal light mt-0 mb-2">
+		<div class="w-auto  max-height-vh-100" id="sidenav-collapse-main">
+		  <ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link text-white active bg-pink" href="{% url 'Watertracking' %}">
+				  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet-half" viewBox="0 0 16 16">
+					  <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0q.164.544.371 1.038c.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8m.413 1.021A31 31 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+					  <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z"/>
+					</svg>
+				  </div>
+				  <span class="nav-link-text ms-1">Watertracking</span>
+				</a>
+			  </li>
+			<li class="nav-item">
+			  <a class="nav-link " href="{% url 'dashboard' %}">
+				<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+				  <i class="material-icons opacity-10">dashboard</i>
+				</div>
+				<span class="nav-link-text ms-1">Dashboard</span>
+			  </a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link " href="{% url 'waterbilling' %}">
+				<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+						<path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z"/>
+						<path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
+					  </svg>
+				</div>
+				<span class="nav-link-text ms-1">Water billing</span>
+			  </a>
+			</li>
+	
+			<li class="nav-item">
+			  <a class="nav-link text-white " href="{% url 'notifications' %}">
+				<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+				  <i class="material-icons opacity-10">notifications</i>
+				</div>
+				<span class="nav-link-text ms-1">Suggestions</span>
+			  </a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link text-white " href="{% url 'profile1' %}">
+				<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+					<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+					<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+				  </svg>
+				</div>
+				<span class="nav-link-text ms-1">Profile</span>
+			  </a>
+			</li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'logout' %}">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">logout</i>
+          </div>
+          <span class="nav-link-text ms-1">Logout</span>
+        </a>
+      </li>
+		  </ul>
+		</div>
+	  </aside>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+	<div class="main-content">
+		<h1>Water Tracking</h1>
+	  
+		<div class="goal-card">
+		  <h2>Your Goal</h2>
+		  <input type="number" id="goalInput" placeholder="Set goal in L" min="0.5" step="0.1">
+		  <button onclick="setGoal()">Set Goal</button>
+		</div>
+	  
+		<div class="tank-section">
+		  <div class="tank">
+			<div id="waterLevel"></div>
+			<div class="tank-label" id="remainingLabel">0.00L / 0.00L</div>
+		  </div>
+	  
+		  <div class="cup-sizes">
+			<h3>Choose Cup Size</h3>
+			<button id="btn250" onclick="addWater(0.25)">250ml</button>
+			<button id="btn500" onclick="addWater(0.5)">500ml</button>
+			<button id="btn750" onclick="addWater(0.75)">750ml</button>
+			<button id="btn1L" onclick="addWater(1)">1L</button>
+			<input type="number" id="customAmount" placeholder="Custom (L)" min="0.05" step="0.05">
+			<button id="btnCustom" onclick="addCustomWater()">Add Custom</button>
+      <button id="reset" onclick="resetWater()">Reset</button>
+		  </div>
+		</div>
+	  
+		<div id="message"></div>
+	  </div>
+  </main>
+  
+  <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/chartjs.min.js' %}"></script>
+  <script>
+    let goal = 0;
+    let current = 0;
+  
+    function setGoal() {
+      goal = parseFloat(document.getElementById('goalInput').value);
+      if (goal > 0) {
+        current = 0;
+        document.getElementById('remainingLabel').innerText = current.toFixed(2) + "L / " + goal.toFixed(2) + "L";
+        document.getElementById('waterLevel').style.height = "0%";
+        document.getElementById('message').innerText = "";
+        enableInputs();
+      }
+    }
+  
+    function addWater(amount) {
+      current += amount;
+      updateTank();
+    }
+  
+    function addCustomWater() {
+      let amount = parseFloat(document.getElementById('customAmount').value);
+      if (isNaN(amount) || amount <= 0) return;
+      addWater(amount);
+    }
+  
+    function updateTank() {
+      let percent = (current / goal) * 100;
+      percent = Math.min(percent, 100); // cap visual tank height at 100%
+      document.getElementById('waterLevel').style.height = percent + "%";
+      document.getElementById('remainingLabel').innerText = current.toFixed(2) + "L / " + goal.toFixed(2) + "L";
+  
+      if (current == goal) {
+        document.getElementById('message').innerText = "Goal Reached!";
+      } 
+      else if(current >goal){
+        document.getElementById('message').innerText= "Overflow alert!";
+      }
+      else {
+        document.getElementById('message').innerText = "";
+      }
+    }
+  
+    function disableInputs() {
+      document.querySelectorAll(".cup-sizes button, .cup-sizes input").forEach(el => {
+        if (el.id !== "reset") {
+          el.disabled = true;
+        }
+      });
+    }
+  
+    function enableInputs() {
+      document.querySelectorAll(".cup-sizes button, .cup-sizes input").forEach(el => {
+        el.disabled = false;
+      });
+    }
+  
+    function resetWater() {
+      goal = 0;
+      current = 0;
+      document.getElementById('goalInput').value = '';
+      document.getElementById('remainingLabel').innerText = "0.00L / 0.00L";
+      document.getElementById('waterLevel').style.height = "0%";
+      document.getElementById('message').innerText = "";
+      enableInputs();
+    }
+  </script>
+  
+
+</body>
+</html>
