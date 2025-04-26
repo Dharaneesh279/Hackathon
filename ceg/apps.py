@@ -5,7 +5,7 @@ class CegConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'ceg'
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+#from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
